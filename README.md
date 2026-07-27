@@ -61,8 +61,8 @@ Detects phone-scrolling distraction using a custom YOLOv11 model.
 ## ⚙️ Installation
 
 ```bash
-git clone https://github.com/Nawaf-Rayhan585/<your-repo-name>.git
-cd <your-repo-name>
+git clone https://github.com/Nawaf-Rayhan585/YOLO_Projects.git
+cd YOLO_Projects
 pip install -r requirements.txt
 ```
 
