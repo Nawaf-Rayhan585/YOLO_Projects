@@ -2,13 +2,13 @@
 
 Made with ❤️ by **Nawaf Rayhan**
 
- ### ⭐ If this repo helped you, please give it a star!
+⭐ If this repo helped you, please give it a star!
 
 ---
 
 ## 📌 Overview
 
-This repo has a collection of computer vision projects built using **YOLO** models. Covers surveillance, retail, and safety use cases — suspicious behavior, vehicle detection, people counting, human alerts, and phone-distraction detection.
+This repo has a collection of computer vision projects built using **YOLO** models. Covers surveillance, retail, safety, and analytics use cases — suspicious behavior, vehicle detection, people counting, human alerts, phone-distraction detection, rat detection, crowd heatmaps, and people detection.
 
 ---
 
@@ -49,6 +49,27 @@ Detects phone-scrolling distraction using a custom YOLOv11 model.
 
 ---
 
+### 6. Rat Detection
+Detects rats in real-time footage using instance segmentation.
+
+<img width="829" alt="rat detection" src="https://github.com/user-attachments/assets/d2f78cb5-1811-404f-ae20-1d4b0ecbc6c8" />
+
+---
+
+### 7. Crowd Heatmap
+Generates a live heatmap showing crowd density and movement, along with individual detections.
+
+<img width="873" alt="crowd heatmap" src="https://github.com/user-attachments/assets/52b49e33-c02b-477a-a100-18216917b883" />
+
+---
+
+### 8. People Detector
+Detects and scores every person in the frame with confidence values.
+
+<img width="826" alt="people detector" src="https://github.com/user-attachments/assets/8e70477e-09cb-47f8-86ee-2c0bb106879d" />
+
+---
+
 ## 🛠️ Tech Stack
 
 - Python
@@ -69,6 +90,10 @@ pip install -r requirements.txt
 ---
 
 ## ▶️ Usage
+
+```bash
+python main.py --source your_video.mp4
+```
 
 Check each project folder for its own specific run command.
 
