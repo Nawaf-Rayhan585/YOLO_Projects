@@ -68,6 +68,13 @@ Detects and scores every person in the frame with confidence values.
 
 <img width="826" alt="people detector" src="https://github.com/user-attachments/assets/8e70477e-09cb-47f8-86ee-2c0bb106879d" />
 
+
+### 9. Fire detector
+Detects fire and gives alarms in realtime, works on videos and imgs
+
+<img width="459" height="260" alt="image" src="https://github.com/user-attachments/assets/9c28b0f5-6286-413c-a42d-ae5436991f93" />
+
+
 ---
 
 ## 🛠️ Tech Stack
