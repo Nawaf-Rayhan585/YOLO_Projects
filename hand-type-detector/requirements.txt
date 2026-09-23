@@ -1,0 +1,3 @@
+opencv-python>=4.9.0
+cvzone>=1.6.1
+mediapipe>=0.10.14

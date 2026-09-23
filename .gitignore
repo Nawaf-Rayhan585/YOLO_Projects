@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+
+# Models & datasets (large, project-specific — fetched per README)
+*.pt
+*.onnx
+*.engine
+dataset/
+runs/
+
+# Media inputs/outputs (not bundled — supply your own via --source)
+*.mp4
+*.avi
+*.mov
+*.mkv
+!**/sample*.mp4
+
+# Generated logs/outputs from the scripts
+*.csv
+output.mp4
+scanned.jpg
+scanned.txt
+slots.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

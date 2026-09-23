@@ -1,115 +1,118 @@
-# 🎯 YOLO Computer Vision Projects
+# Computer Vision Projects
 
 Made with ❤️ by **Nawaf Rayhan**
 
 ⭐ If this repo helped you, please give it a star!
 
----
-
-## 📌 Overview
-
-This repo has a collection of computer vision projects built using **YOLO** models. Covers surveillance, retail, safety, and analytics use cases — suspicious behavior, vehicle detection, people counting, human alerts, phone-distraction detection, rat detection, crowd heatmaps, and people detection.
-
----
-
-## 🚀 Projects
-
-### 1. Suspicious Behavior Detection
-Detects suspicious activity (like shoplifting posture) using pose estimation + YOLO.
-
-<img width="332" alt="suspicious detection" src="https://github.com/user-attachments/assets/f3caf1ee-1f35-42e9-9856-6dbe0fcb5d9d" />
+A collection of 19 standalone, runnable computer vision projects — YOLO
+detection & tracking, pose estimation, segmentation, MediaPipe, and classical
+OpenCV — covering surveillance, retail analytics, safety, productivity, and
+document processing. Every project lives in its own folder with its own
+script(s), `README.md`, and `requirements.txt`, so you can clone the whole
+repo or just grab the one folder you need.
 
 ---
 
-### 2. Vehicle Detection & Tracking
-Tracks vehicles on roads/highways with bounding boxes and IDs.
+## 📌 Projects
 
-<img width="410" alt="vehicle tracking" src="https://github.com/user-attachments/assets/7159c697-57a4-4b60-812b-567bad135ccd" />
+### Surveillance & Safety
 
----
+| Project | What it does |
+|---|---|
+| [restricted-zone-intrusion-alert](restricted-zone-intrusion-alert) | Alerts when a person's feet enter a defined restricted zone |
+| [suspicious-behavior-detection](suspicious-behavior-detection) | Pose-based heuristic: flags crouching + fast hand movement |
+| [fire-smoke-detection](fire-smoke-detection) | Real-time fire detection with alarm, + training notebook |
+| [fall-detection](fall-detection) | Pose-based heuristic: flags a sudden drop into a horizontal posture |
+| [ppe-safety-compliance](ppe-safety-compliance) | Flags missing hard hats / safety vests / masks on site |
+| [drowsiness-yawn-detection](drowsiness-yawn-detection) | Driver-monitoring style eye-closure + yawn detection |
+| [face-blur-anonymizer](face-blur-anonymizer) | Blurs/pixelates every face in a feed for privacy compliance |
+| [rat-rodent-detection](rat-rodent-detection) | Rodent detection + sighting log, + training notebook |
 
-### 3. People Counting (IN/OUT)
-Counts people entering and exiting a defined zone in real time.
+### Retail & Crowd Analytics
 
-<img width="404" alt="people counting" src="https://github.com/user-attachments/assets/7bd05e4d-3f74-43fb-ad43-689e0317cd33" />
+| Project | What it does |
+|---|---|
+| [people-counter-in-out](people-counter-in-out) | IN/OUT footfall counter with a live dashboard |
+| [crowd-heatmap](crowd-heatmap) | Live crowd density heatmap + person count |
+| [queue-wait-time-estimator](queue-wait-time-estimator) | Live queue length + rolling average wait time |
+| [parking-space-occupancy](parking-space-occupancy) | Per-slot free/occupied detection for a parking lot |
 
----
+### Traffic & Vehicles
 
-### 4. Human Detection Alert
-Sends alerts when a human is detected in a restricted/monitored area.
+| Project | What it does |
+|---|---|
+| [vehicle-detection-tracking](vehicle-detection-tracking) | Multi-class vehicle detection with persistent tracking IDs |
+| [license-plate-recognition](license-plate-recognition) | ANPR: plate detection + OCR reading, + training notebook |
 
-<img width="406" alt="human alert" src="https://github.com/user-attachments/assets/aec7794c-c44f-4b07-9ede-d12e709b8088" />
+### Productivity & HCI
 
----
+| Project | What it does |
+|---|---|
+| [focus-guard-distraction-detector](focus-guard-distraction-detector) | Self-monitoring screen-distraction guard with full-screen alerts |
+| [hand-type-detector](hand-type-detector) | Labels each detected hand Left / Right |
+| [hand-gesture-volume-control](hand-gesture-volume-control) | Pinch-gesture system volume control |
 
-### 5. Reels Distraction Detection (YOLOv11)
-Detects phone-scrolling distraction using a custom YOLOv11 model.
+### Document & Vision Utilities
 
-<img width="406" alt="reels distraction" src="https://github.com/user-attachments/assets/b596bd39-1747-41ad-830c-861690b69706" />
-
----
-
-### 6. Rat Detection
-Detects rats in real-time footage using instance segmentation.
-
-<img width="829" alt="rat detection" src="https://github.com/user-attachments/assets/d2f78cb5-1811-404f-ae20-1d4b0ecbc6c8" />
-
----
-
-### 7. Crowd Heatmap
-Generates a live heatmap showing crowd density and movement, along with individual detections.
-
-<img width="873" alt="crowd heatmap" src="https://github.com/user-attachments/assets/52b49e33-c02b-477a-a100-18216917b883" />
-
----
-
-### 8. People Detector
-Detects and scores every person in the frame with confidence values.
-
-<img width="826" alt="people detector" src="https://github.com/user-attachments/assets/8e70477e-09cb-47f8-86ee-2c0bb106879d" />
-
-
-### 9. Fire detector
-Detects fire and gives alarms in realtime, works on videos and imgs
-
-<img width="459" height="260" alt="image" src="https://github.com/user-attachments/assets/9c28b0f5-6286-413c-a42d-ae5436991f93" />
-
+| Project | What it does |
+|---|---|
+| [document-scanner-ocr](document-scanner-ocr) | Classic CV document edge-detect + perspective warp + OCR |
+| [instance-segmentation-bg-removal](instance-segmentation-bg-removal) | Green-screen-style background blur/replace via segmentation |
 
 ---
 
 ## 🛠️ Tech Stack
 
-- Python
-- YOLO (v8 / v11)
-- OpenCV
-- Pose Estimation
-
----
+- **Detection & tracking:** [Ultralytics YOLO](https://github.com/ultralytics/ultralytics) (v8/v11) + [ByteTrack](https://github.com/ifzhang/ByteTrack) via `supervision`
+- **Pose & hands:** YOLO-Pose, [MediaPipe](https://google.github.io/mediapipe/), [cvzone](https://github.com/cvzone/cvzone)
+- **Segmentation:** YOLO-Seg
+- **OCR:** [EasyOCR](https://github.com/JaidedAI/EasyOCR), [Tesseract](https://github.com/tesseract-ocr/tesseract)
+- **Core:** Python, OpenCV, NumPy
+- **Training:** Google Colab notebooks + [Roboflow](https://roboflow.com) datasets, for the projects that need a custom-trained model
 
 ## ⚙️ Installation
 
+Each project is self-contained — clone the repo, then install only what
+that project needs:
+
 ```bash
 git clone https://github.com/Nawaf-Rayhan585/YOLO_Projects.git
-cd YOLO_Projects
+cd YOLO_Projects/<project-folder>
 pip install -r requirements.txt
 ```
 
----
-
 ## ▶️ Usage
 
+Every script takes a `--source` argument (a video file path, an image path,
+or a webcam index like `0`) plus project-specific flags — see each folder's
+own `README.md` for the exact command and options. General pattern:
+
 ```bash
-python main.py --source your_video.mp4
+python <script>.py --source your_video.mp4
+python <script>.py --source 0              # webcam
 ```
 
-Check each project folder for its own specific run command.
+## 📁 Project Structure
 
----
+Two kinds of projects in this repo:
+
+- **Ready to run** — most projects use a general-purpose pretrained YOLO/
+  MediaPipe model and work immediately after `pip install`.
+- **Train then run** — a few (fire, rodent, license plate, PPE detection)
+  need a model trained on a domain-specific dataset. Those folders include a
+  Colab notebook (`train_*.ipynb`) that trains one on a free GPU in
+  ~15-30 minutes, plus a local `*_inference.py` / `*_detect.py` script to run
+  the result.
+
+No video/image datasets or trained weights are committed to the repo (keeps
+it light) — point each script's `--source`/`--model` flags at your own.
+
+## 📜 License
+
+[MIT](LICENSE) — free to use, modify, and build on.
 
 ## 📬 Contact
 
-Built by **AI DEV Guy** — feel free to reach out for freelance CV/AI projects.
-
----
+Built by **Nawaf Rayhan** — feel free to reach out for freelance CV/AI work.
 
 ⭐ Don't forget to star the repo if you found it useful!

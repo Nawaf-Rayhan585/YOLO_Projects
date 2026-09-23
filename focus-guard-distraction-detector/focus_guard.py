@@ -1,4 +1,18 @@
-import os, sys, time, base64, threading, io, queue, subprocess
+"""
+Focus Guard — Screen Distraction Detector
+A self-monitoring productivity tool: periodically screenshots your own
+screen, runs it through YOLO to spot distraction objects/apps (phone,
+TV/streaming controls, social media windows), and pops up a full-screen
+warning + beep when it catches you slipping. Runs entirely locally —
+nothing is uploaded anywhere.
+
+Usage:
+    python focus_guard.py
+    python focus_guard.py --model yolo11n.pt --interval 5
+"""
+
+import argparse
+import os, sys, time, threading, io, queue, subprocess
 import tkinter as tk
 from tkinter import font as tkfont
 from datetime import datetime
@@ -21,15 +35,27 @@ import mss
 from PIL import Image
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(description="Local screen-distraction detector")
+    parser.add_argument("--model", default="yolo26x", help="Ultralytics model name, no .pt suffix")
+    parser.add_argument("--interval", type=int, default=8, help="Seconds between screen scans")
+    parser.add_argument("--conf", type=float, default=0.55, help="Confidence threshold to trigger an alert")
+    parser.add_argument("--warning-seconds", type=int, default=12, help="How long the full-screen warning stays up")
+    parser.add_argument("--mute", action="store_true", help="Disable the audio alarm")
+    return parser.parse_args()
+
+
+ARGS = parse_args()
+
 CONFIG = {
-    "yolo_model":               "yolo26x",
-    "yolo_imgsz":               1280,
-    "yolo_conf":                0.45,
-    "scan_interval_seconds":    8,
-    "alarm_beeps":              5,
-    "warning_display_seconds":  12,
-    "confidence_threshold":     0.55,
-    "screenshot_quality":       80,
+    "yolo_model":               ARGS.model,
+    "yolo_imgsz":                1280,
+    "yolo_conf":                 0.45,
+    "scan_interval_seconds":     ARGS.interval,
+    "alarm_beeps":                5,
+    "warning_display_seconds":   ARGS.warning_seconds,
+    "confidence_threshold":      ARGS.conf,
+    "screenshot_quality":         80,
     "max_screenshot_width":     1280,
 }
 
@@ -51,11 +77,6 @@ def capture_screen() -> Image.Image:
     if img.width > max_w:
         img = img.resize((max_w, int(img.height * max_w / img.width)), Image.LANCZOS)
     return img
-
-def pil_to_bytes(img: Image.Image) -> bytes:
-    buf = io.BytesIO()
-    img.save(buf, format="JPEG", quality=CONFIG["screenshot_quality"])
-    return buf.getvalue()
 
 
 class YoloEngine:
@@ -167,6 +188,8 @@ class YoloEngine:
 
 
 def play_alarm():
+    if ARGS.mute:
+        return
     try:
         if sys.platform == "win32":
             import winsound
@@ -356,7 +379,7 @@ class Dashboard:
             os.system("clear" if os.name != "nt" else "cls")
             W = 62
             print(f"\033[1;36m{'─' * W}\033[0m")
-            print(f"\033[1;36m  🔍 DISTRACTION DETECTOR  │  {self.engine_name}\033[0m")
+            print(f"\033[1;36m  🔍 FOCUS GUARD  │  {self.engine_name}\033[0m")
             print(f"\033[1;36m{'─' * W}\033[0m")
             print(f"  ⏱  Uptime:        {self._uptime()}")
             print(f"  🔎 Scans:         {self.scans}")
@@ -388,13 +411,13 @@ class Dashboard:
 def main():
     print("\033[1;36m")
     print("╔══════════════════════════════════════════════╗")
-    print("║   🔍 DISTRACTION DETECTOR                    ║")
-    print("║   Engine: YOLOv26 (local, offline)           ║")
+    print("║   🔍 FOCUS GUARD — screen distraction guard  ║")
+    print(f"║   Engine: {CONFIG['yolo_model']:<36}║")
     print("╚══════════════════════════════════════════════╝")
     print("\033[0m")
 
     engine = YoloEngine(CONFIG["yolo_model"])
-    engine_label = f"YOLOv26 ({CONFIG['yolo_model']})"
+    engine_label = CONFIG["yolo_model"]
     print(f"✅ {engine_label} ready\n")
 
     overlay = WarningOverlay()
